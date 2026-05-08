@@ -1,0 +1,55 @@
+body {
+  margin: 0;
+  background: #080F13;
+  font-family: "Roboto Mono", monospace;
+}
+
+h1 {
+    color: #00ff00;
+}
+
+.sidebar {
+  width: 220px;
+  height: 100vh;
+  background: #000000;
+  padding: 20px;
+}
+
+.sidebar h2 {
+  color: white;
+}
+
+.sidebar a,
+.dropdown-btn {
+  display: block;
+  width: 100%;
+  color: #00ff00;
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 12px;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.sidebar a:hover,
+.dropdown-btn:hover {
+  background: #ff0000;
+}
+
+/* Hidden by default */
+.dropdown-container {
+  display: none;
+  padding-left: 15px;
+}
+
+/* Smaller links inside */
+.dropdown-container a {
+  font-size: 14px;
+  color: #00ff00;
+}
+
+.terminalh {
+    font-size: 50px;
+}
