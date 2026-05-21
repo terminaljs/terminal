@@ -1,255 +1,118 @@
-// 1. Define your games here. 
 const games = [
     {
-        id: "crazycattle",
-        title: "Crazy Cattle 3D",
-        description: "A weird game about being a sheep and ramming into other sheep. Be the only sheep left standing.",
-        // The inner backticks are now properly escaped with \` and local files are pointed to absolute URLs
-        code: `
-<!DOCTYPE html>
+        id: "cubecollector3d",
+        title: "3D Cube Collector",
+        description: "Move the green player cube around a 3D plane and collect the rotating red cubes before time runs out!",
+        code: `<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <script>!function(){const e="https://yoplay.io",n=window.location.href.includes(".embed");if(function isCrossOriginIframe3(){try{return window!==window.top&&window.top.location.hostname!==window.location.hostname}catch(e){return!0}}()){if(n||document.referrer.startsWith(e))return;{const e=\`<style>html body * {display: none !important;opacity: 0 !important;}html body #home_box * {display: block !important;opacity: 1 !important;font-family: Helvetica, Arial, Roboto, sans-serif;}</style><div id="home_box" style="opacity: 1 !important;position: fixed;inset: 0px;display: flex !important;flex-direction: column;-webkit-box-align: center;align-items: center;-webkit-box-pack: center;justify-content: center;padding: 24px;text-align: center;">
-            <img src="https://yoplay.io/data/image/options/home-bg.jpg" alt="Background Image" title="Yoplay.io Background" style="position: absolute;inset: 0;width: 100%;height: 100%;object-fit: cover;z-index: -1;">
-            <h1 style="font-size: 27px;font-weight: 600;margin: 9px 0;color: #fff;text-transform: uppercase;text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">Play Crazy Cattle 3d on</h1>
-            <a target="_blank" title="Home" href="https://yoplay.io"><img style="display: block;width: 200px;height: 100%;object-fit: cover;" src="https://yoplay.io/data/image/options/home-logo-web.png" alt="Logo Image" title="Yoplay.io Logo"></a>
-            <p style="color: #fff;font-size: 24px;font-weight: 500;margin-top: 9px;margin-bottom: 21px;font-style: italic;">for best experiment!</p>
-            <a target="_blank" title="Play Crazy Cattle 3d" href="https://yoplay.io/crazy-cattle-3d/" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.5);text-decoration: none;background-color: rgba(255, 255, 255, 0.3);color: #fff;font-weight: 700;padding: 12px 32px;border: 1px solid #fff;border-radius: 3px;box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);transition: all 0.3s ease-in-out;transform: scale(1);cursor: pointer;">Play Now!</a>
-        </div>\`;return void(document.body?(document.body.innerHTML=e,window.addEventListener=function(){},document.write=function(){},window.stop(),document.querySelectorAll("script").forEach((e=>e.remove()))):document.addEventListener("DOMContentLoaded",(()=>{document.body||document.querySelector("body")||document.documentElement.appendChild(document.createElement("body")),document.body.innerHTML=e,window.addEventListener=function(){},document.write=function(){},window.stop(),document.querySelectorAll("script").forEach((e=>e.remove()))})))}}n||document.referrer.startsWith(e)||(window.location.href="https://yoplay.io/crazy-cattle-3d/")}();</script>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
-	<title>CrazyCattle3D</title>
-	<style>
-		html,
-		body,
-		#canvas {
-			margin: 0;
-			padding: 0;
-			border: 0;
-		}
-
-		body {
-			color: white;
-			background-color: black;
-			overflow: hidden;
-			touch-action: none;
-		}
-
-		#canvas {
-			display: block;
-		}
-
-		#canvas:focus {
-			outline: none;
-		}
-
-		#status,
-		#status-splash,
-		#status-progress {
-			position: absolute;
-			left: 0;
-			right: 0;
-		}
-
-		#status,
-		#status-splash {
-			top: 0;
-			bottom: 0;
-		}
-
-		#status {
-			background-color: #000000;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			align-items: center;
-			visibility: hidden;
-		}
-
-		#status-splash {
-			max-height: 100%;
-			max-width: 100%;
-			margin: auto;
-		}
-
-		#status-splash.show-image--false {
-			display: none;
-		}
-
-		#status-splash.fullsize--true {
-			height: 100%;
-			width: 100%;
-			object-fit: contain;
-		}
-
-		#status-splash.use-filter--false {
-			image-rendering: pixelated;
-		}
-
-		#status-progress,
-		#status-notice {
-			display: none;
-		}
-
-		#status-progress {
-			bottom: 10%;
-			width: 50%;
-			margin: 0 auto;
-		}
-
-		#status-notice {
-			background-color: #5b3943;
-			border-radius: 0.5rem;
-			border: 1px solid #9b3943;
-			color: #e0e0e0;
-			font-family: 'Noto Sans', 'Droid Sans', Arial, sans-serif;
-			line-height: 1.3;
-			margin: 0 2rem;
-			overflow: hidden;
-			padding: 1rem;
-			text-align: center;
-			z-index: 1;
-		}
-	</style>
-	<link id="-gd-engine-icon" rel="icon" type="image/png" href="https://yoplay.io/crazy-cattle-3d/index.icon.png" />
-	<link rel="apple-touch-icon" href="https://yoplay.io/crazy-cattle-3d/index.apple-touch-icon.png" />
-
+    <meta charset="UTF-8">
+    <title>3D Cube Collector</title>
+    <style>
+        body { margin: 0; background: #111; color: white; font-family: sans-serif; overflow: hidden; text-align: center; }
+        canvas { display: block; background: #1a1a1a; margin: 0 auto; }
+        #ui { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); font-size: 20px; font-weight: bold; pointer-events: none; }
+    </style>
 </head>
-
 <body>
-	<canvas id="canvas">
-		Your browser does not support the canvas tag.
-	</canvas>
+    <div id="ui">Score: <span id="score">0</span> | Time: <span id="time">30</span>s</div>
+    <canvas id="gameCanvas"></canvas>
 
-	<noscript>
-		Your browser does not support JavaScript.
-	</noscript>
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
-	<div id="status">
-		<img id="status-splash" class="show-image--true fullsize--true use-filter--true" src="https://yoplay.io/crazy-cattle-3d/index.png" alt="">
-		<progress id="status-progress"></progress>
-		<div id="status-notice"></div>
-	</div>
+        let score = 0;
+        let timeLeft = 30;
+        let gameActive = true;
 
-	<script src="https://yoplay.io/crazy-cattle-3d/index.js"></script>
-	<script>
-		const GODOT_CONFIG = {
-			"args": [],
-			"canvasResizePolicy": 2,
-			"ensureCrossOriginIsolationHeaders": true,
-			"executable": "https://yoplay.io/crazy-cattle-3d/index",
-			"experimentalVK": false,
-			"fileSizes": {
-				"https://yoplay.io/crazy-cattle-3d/index.pck": 42336176,
-				"https://yoplay.io/crazy-cattle-3d/index.wasm": 43699190
-			},
-			"focusCanvas": true,
-			"gdextensionLibs": []
-		};
-		const GODOT_THREADS_ENABLED = false;
-		const engine = new Engine(GODOT_CONFIG);
+        // Player object (Pseudo-3D coordinates)
+        const player = { x: 0, y: 0, z: 200, size: 30, speed: 5 };
+        // Target object
+        const target = { x: (Math.random() * 400) - 200, y: (Math.random() * 400) - 200, z: 200, size: 20 };
 
-		(function() {
-			const statusOverlay = document.getElementById('status');
-			const statusProgress = document.getElementById('status-progress');
-			const statusNotice = document.getElementById('status-notice');
+        const keys = {};
+        window.addEventListener('keydown', e => keys[e.key] = true);
+        window.addEventListener('keyup', e => keys[e.key] = false);
 
-			let initializing = true;
-			let statusMode = '';
+        // Timer interval
+        const countdown = setInterval(() => {
+            if (timeLeft > 0) {
+                timeLeft--;
+                document.getElementById('time').innerText = timeLeft;
+            } else {
+                gameActive = false;
+                clearInterval(countdown);
+                alert('Game Over! Your final score: ' + score);
+            }
+        }, 1000);
 
-			function setStatusMode(mode) {
-				if (statusMode === mode || !initializing) {
-					return;
-				}
-				if (mode === 'hidden') {
-					statusOverlay.remove();
-					initializing = false;
-					return;
-				}
-				statusOverlay.style.visibility = 'visible';
-				statusProgress.style.display = mode === 'progress' ? 'block' : 'none';
-				statusNotice.style.display = mode === 'notice' ? 'block' : 'none';
-				statusMode = mode;
-			}
+        function project(x, y, z) {
+            const fov = 400; 
+            const scale = fov / (fov + z);
+            const projX = (x * scale) + canvas.width / 2;
+            const projY = (y * scale) + canvas.height / 2;
+            return { x: projX, y: projY, size: Math.max(1, scale) };
+        }
 
-			function setStatusNotice(text) {
-				while (statusNotice.lastChild) {
-					statusNotice.removeChild(statusNotice.lastChild);
-				}
-				const lines = text.split('\n');
-				lines.forEach((line) => {
-					statusNotice.appendChild(document.createTextNode(line));
-					statusNotice.appendChild(document.createElement('br'));
-				});
-			}
+        function update() {
+            if (!gameActive) return;
 
-			function displayFailureNotice(err) {
-				console.error(err);
-				if (err instanceof Error) {
-					setStatusNotice(err.message);
-				} else if (typeof err === 'string') {
-					setStatusNotice(err);
-				} else {
-					setStatusNotice('An unknown error occurred.');
-				}
-				setStatusMode('notice');
-				initializing = false;
-			}
+            if (keys['ArrowUp'] || keys['w']) player.y -= player.speed;
+            if (keys['ArrowDown'] || keys['s']) player.y += player.speed;
+            if (keys['ArrowLeft'] || keys['a']) player.x -= player.speed;
+            if (keys['ArrowRight'] || keys['d']) player.x += player.speed;
 
-			const missing = Engine.getMissingFeatures({
-				threads: GODOT_THREADS_ENABLED,
-			});
+            // Simple 2D distance collision check
+            const dist = Math.hypot(player.x - target.x, player.y - target.y);
+            if (dist < (player.size + target.size)) {
+                score++;
+                document.getElementById('score').innerText = score;
+                target.x = (Math.random() * 400) - 200;
+                target.y = (Math.random() * 400) - 200;
+            }
+        }
 
-			if (missing.length !== 0) {
-				if (GODOT_CONFIG['serviceWorker'] && GODOT_CONFIG['ensureCrossOriginIsolationHeaders'] && 'serviceWorker' in navigator) {
-					let serviceWorkerRegistrationPromise;
-					try {
-						serviceWorkerRegistrationPromise = navigator.serviceWorker.getRegistration();
-					} catch (err) {
-						serviceWorkerRegistrationPromise = Promise.reject(new Error('Service worker registration failed.'));
-					}
-					Promise.race([
-						serviceWorkerRegistrationPromise.then((registration) => {
-							if (registration != null) {
-								return Promise.reject(new Error('Service worker already exists.'));
-							}
-							return registration;
-						}).then(() => engine.installServiceWorker()),
-						new Promise((resolve) => {
-							setTimeout(() => resolve(), 2000);
-						}),
-					]).then(() => {
-						window.location.reload();
-					}).catch((err) => {
-						console.error('Error while registering service worker:', err);
-					});
-				} else {
-					const missingMsg = 'Error\nThe following features required to run Godot projects on the Web are missing:\n';
-					displayFailureNotice(missingMsg + missing.join('\n'));
-				}
-			} else {
-				setStatusMode('progress');
-				engine.startGame({
-					'onProgress': function(current, total) {
-						if (current > 0 && total > 0) {
-							statusProgress.value = current;
-							statusProgress.max = total;
-						} else {
-							statusProgress.removeAttribute('value');
-							statusProgress.removeAttribute('max');
-						}
-					},
-				}).then(() => {
-					setStatusMode('hidden');
-				}, displayFailureNotice);
-			}
-		}());
-	</script>
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"a6eeeef71805413e99ae7ee5fad90bc4","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw Target (Red)
+            const projTarget = project(target.x, target.y, target.z);
+            ctx.fillStyle = '#ff4757';
+            ctx.fillRect(projTarget.x - (target.size * projTarget.size)/2, projTarget.y - (target.size * projTarget.size)/2, target.size * projTarget.size, target.size * projTarget.size);
+
+            // Draw Player (Green)
+            const projPlayer = project(player.x, player.y, player.z);
+            ctx.fillStyle = '#2ed573';
+            ctx.fillRect(projPlayer.x - (player.size * projPlayer.size)/2, projPlayer.y - (player.size * projPlayer.size)/2, player.size * projPlayer.size, player.size * projPlayer.size);
+        }
+
+        function loop() {
+            update();
+            draw();
+            requestAnimationFrame(loop);
+        }
+
+        loop();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
 </body>
-
 </html>`
+    },
+    {
+        id: "snake",
+        title: "Snake Game",
+        description: "Eat the apples, don't hit the walls!",
+        code: `<!DOCTYPE html><html><head><title>Snake</title></head><body style="background:#222;color:#0f0;text-align:center;"><h1>Snake Game</h1><p>Imagine a fun game of snake here!</p></body></html>`
+    }
+];
     },
     {
         id: "snake",
